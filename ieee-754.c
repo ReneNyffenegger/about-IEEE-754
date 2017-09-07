@@ -85,8 +85,12 @@ int main() {
   print_double_as_binary( 250.25); // 11111010.01
   print_double_as_binary( DBL_MIN);
   print_double_as_binary( DBL_MIN * 2);
-  print_double_as_binary( NAN);
-  print_double_as_binary(-NAN);
+  print_double_as_binary(  NAN);
+  print_double_as_binary(- NAN);
+//print_double_as_binary( SNAN);
+//print_double_as_binary(-SNAN);
+  print_double_as_binary( INFINITY);
+  print_double_as_binary(-INFINITY);
   print_double_as_binary( DBL_MAX);
 
 }
