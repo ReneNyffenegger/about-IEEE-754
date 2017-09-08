@@ -1,64 +1,19 @@
-#include <stdio.h>
-#include <string.h>
-#include <float.h>
 #include <math.h>
+#include <float.h>
+#include <stdio.h>
 
-#include <ieee754.h>
-
-void put_char(char* c, int* cnt) {
-
-  printf(c);
-
-  ++*cnt;
-
-  if (! (*cnt % 8)) {
-    printf(" | ");
-  }
-  else if (! (*cnt % 4)) {
-    printf("  ");
-  }
-
-}
+#include "represent-ieee-754.h"
 
 void print_double_as_binary(double d) {
 
-  int cnt = 0;
+  ieee_754_double_representation r;
+  represent_ieee_754_double(d, r);
 
-  union ieee754_double dd;
-
-  printf ("%+20.10f: ", d);
-
-  dd.d = d;
-
-  if (dd.ieee.negative) {
-    put_char("S", &cnt);
-  }
-  else {
-    put_char(".", &cnt);
-  }
-
-  for (unsigned i=1<<10; i >= 1; i>>=1) {
-    if    (dd.ieee.exponent & i) { put_char("E", &cnt); }
-    else                         { put_char(".", &cnt); }
-  }
-
-
-  for (unsigned long int i=1u<<19; i>=1 ; i>>=1) {
-    if   (dd.ieee.mantissa0 & i) { put_char("M", &cnt); }
-    else                         { put_char(".", &cnt); }
-  }
-
-  for (unsigned long int i = (1u<<31); i>= 1 ; i>>=1) {
-    if   (dd.ieee.mantissa1 & i) { put_char("M", &cnt); }
-    else                         { put_char(".", &cnt); }
-  }
-
-
-  printf("\n");
+  printf("%12.6f %s\n", d, r);
 
 }
 
-int main() {
+int main() { 
 
 
   print_double_as_binary(  0);
@@ -92,5 +47,7 @@ int main() {
   print_double_as_binary( INFINITY);
   print_double_as_binary(-INFINITY);
   print_double_as_binary( DBL_MAX);
+
+  return 0;
 
 }
