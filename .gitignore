@@ -2,3 +2,4 @@
 *.o
 min-double
 print-some-doubles
+nextafter
