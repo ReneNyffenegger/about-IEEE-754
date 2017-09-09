@@ -26,7 +26,7 @@ int main() {
    printf("    %s\n", r);
 
    d=nextafter(1.0/pow(2, 1022), -INFINITY);
-   printf("\nThe mantissa increasing can be continued until all bits of the");
+   printf("\nWe can continue to increase the mantissa until all bits of the");
    printf("\nmantissa are set:\n");
    represent_ieee_754_double(d, r); printf("    %s\n", r);
 
